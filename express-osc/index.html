@@ -9,7 +9,7 @@
 
             let mouseBefore = {x : 0, y : 0}
             let button
-            let notes = 12
+            let notes = 12 * 3
             let compases = 1
             let notesPerCompas = 4
             let midiOut
@@ -29,7 +29,7 @@
                 button.mousePressed(submitDrawing)
                 // drawing stroke
                 stroke(0)
-                strokeWeight(10)
+                strokeWeight(25)
             }
 
             function draw(){
@@ -55,6 +55,9 @@
                                 break
                             }
                             for(let j = y; j < y + yStep; j++){
+                                if (j > height){
+                                    break
+                                }
                                 let c = get(i, j)
                                 bright += (red(c) + green(c) + blue(c)) / 3
                                 counter++
@@ -62,7 +65,10 @@
                         }
                         bright /= counter
                         let velocity = map(bright, 0, 255, 127, 0)
-                        if (velocity < 40) {
+                        if (velocity < 50) {
+                            velocity = 0
+                        }
+                        else if (velocity > 120){
                             velocity = 0
                         }
                         aux.push(velocity)
