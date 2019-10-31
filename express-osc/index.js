@@ -28,7 +28,7 @@ app.get("/", function (req, res) {
 
 app.post('/post', function(req, res){
     midiBuffer.push(req.body)
-    // console.log(midiBuffer)
+    console.log(midiBuffer)
     console.log('array lenght: ' + midiBuffer.length)
 })
 

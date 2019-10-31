@@ -42,11 +42,12 @@
 
             function submitDrawing(){
                 loadPixels()
-                let xStep = int(width / (compases * notesPerCompas - 1))
-                let yStep = int(height / (notes))
-                for(let x = 0; x < width; x += xStep){
+                let margin = .1
+                let xStep = int((1 - margin) * width / (compases * notesPerCompas))
+                let yStep = int((1 - margin) * height / (notes - 1))
+                for(let x = width * margin / 2; x < width * (1 - margin / 2); x += xStep){
                     let aux = []
-                    for(let y = height; y >= 0; y -= yStep){
+                    for(let y = height * (1 - margin / 2); y >= height * margin / 2; y -= yStep){
                         // check every note
                         let bright = 0
                         let counter = 0
@@ -65,12 +66,12 @@
                         }
                         bright /= counter
                         let velocity = map(bright, 0, 255, 127, 0)
-                        if (velocity < 50) {
+                        if (velocity < 10) {
                             velocity = 0
                         }
-                        else if (velocity > 120){
-                            velocity = 0
-                        }
+                        // else if (velocity > 120){
+                        //     velocity = 0
+                        // }
                         aux.push(velocity)
                     }
                     midiOut.push(aux)
