@@ -25,7 +25,7 @@
                 rect(0,0,width, height)
                 // submit button setup
                 button = createButton('submit')
-                button.position(0,0)
+                button.position(width*.9,height*.9)
                 button.mousePressed(submitDrawing)
                 // drawing stroke
                 stroke(0)
@@ -34,6 +34,10 @@
 
             function draw(){
                 if(mouseIsPressed){
+                    if(mouseBefore.x == 0 && mouseBefore.y == 0){
+                        mouseBefore.x = mouseX
+                        mouseBefore.y = mouseY
+                    }
                     line(mouseBefore.x, mouseBefore.y, mouseX, mouseY)
                 }
                 mouseBefore.x = mouseX
@@ -69,9 +73,6 @@
                         if (velocity < 10) {
                             velocity = 0
                         }
-                        // else if (velocity > 120){
-                        //     velocity = 0
-                        // }
                         aux.push(velocity)
                     }
                     midiOut.push(aux)
@@ -88,7 +89,6 @@
                     }
                     data[i] = datAux
                 }
-                // data = JSON.stringify(data)
                 data = JSON.stringify(midiOut)
                 xhr.send(data)
                 // clean the canvas
