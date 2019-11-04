@@ -36,6 +36,7 @@ app.post('/post', function(req, res){
 osc.on('/time', message => {
     // console.log(midiBuffer)
     let tempo = message.args[0]
+    console.log(tempo)
     if(tempo == 1){
         // send currentArray[1]
         if(currentArray.length >= 1){
