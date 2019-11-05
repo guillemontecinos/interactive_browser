@@ -2,6 +2,41 @@
     <head>
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
+        <style>
+            @media screen and (orientation:portrait) {
+                // CSS applied when the device is in portrait mode
+            }
+
+            @media screen and (orientation:landscape) {
+                // CSS applied when the device is in landscape mode 
+            }
+            .encachao {
+                background-color: #31e68e;
+                border-radius: 30px;
+                border: none;
+                display: inline-block;
+                color: #ffffff;
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: 700;
+                padding-left: 40%;
+                padding-right: 40%;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                text-decoration: none;
+            }
+            .encachao:active {
+                position:relative;
+                top:1px;
+            }
+            .lock-screen {
+                height: 100%;
+                overflow: hidden;
+                width: 100%;
+                position: fixed;
+            }
+        </style>
+        <body class="lock-screen">
         <script>
             // Interactive Browser
             // by Guillermo Montecinos, oct 2019
@@ -15,21 +50,23 @@
             let midiOut
             let data
 
-
             function setup(){
                 midiOut = []
                 data = {}
-                createCanvas(800,600)
+                createCanvas(windowWidth, windowHeight)
                 // margins rect
                 // noFill();
-                rect(0,0,width, height)
+                stroke('#31e68e')
+                strokeWeight(4)
+                rect(0,0,windowWidth - 20, windowHeight- 20, 20)
                 // submit button setup
-                button = createButton('submit')
-                button.position(width*.9,height*.9)
+                button = createButton('SUBMIT')
+                button.position(width*.05,height*.8)
                 button.mousePressed(submitDrawing)
+                button.addClass('encachao');
                 // drawing stroke
                 stroke(0)
-                strokeWeight(25)
+                strokeWeight(7)
             }
 
             function draw(){
@@ -96,6 +133,6 @@
             }
         </script>
     </head>
-    <body>
+    
     </body>
 </html>
