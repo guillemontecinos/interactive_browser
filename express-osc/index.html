@@ -40,6 +40,7 @@
         <script>
             // Interactive Browser
             // by Guillermo Montecinos, oct 2019
+            // CSS and Styling by Karina Hyland
             // to be performed with Sokio
 
             let mouseBefore = {x : 0, y : 0}
@@ -49,6 +50,7 @@
             let notesPerCompas = 4
             let midiOut
             let data
+            let drawing = false
 
             function setup(){
                 midiOut = []
@@ -66,24 +68,30 @@
                 button.addClass('encachao');
                 // drawing stroke
                 stroke(0)
-                strokeWeight(7)
+                strokeWeight(8)
             }
 
             function draw(){
-                if(mouseIsPressed){
-                    if(mouseBefore.x == 0 && mouseBefore.y == 0){
-                        mouseBefore.x = mouseX
-                        mouseBefore.y = mouseY
-                    }
+                if(drawing){
                     line(mouseBefore.x, mouseBefore.y, mouseX, mouseY)
                 }
                 mouseBefore.x = mouseX
                 mouseBefore.y = mouseY
             }
 
+            function touchStarted(){
+                drawing = true
+                mouseBefore.x = mouseX
+                mouseBefore.y = mouseY
+            }
+
+            function touchEnded(){
+                drawing = false
+            }
+
             function submitDrawing(){
                 loadPixels()
-                let margin = .1
+                let margin = .2
                 let xStep = int((1 - margin) * width / (compases * notesPerCompas))
                 let yStep = int((1 - margin) * height / (notes - 1))
                 for(let x = width * margin / 2; x < width * (1 - margin / 2); x += xStep){
@@ -131,6 +139,10 @@
                 // clean the canvas
                 setup()
             }
+
+            /* function windowResized() {
+               resizeCanvas(windowWidth, windowHeight);
+            } */
         </script>
     </head>
     
