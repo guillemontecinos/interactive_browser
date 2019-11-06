@@ -3,26 +3,16 @@
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
         <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
         <style>
-            @media screen and (orientation:portrait) {
-                // CSS applied when the device is in portrait mode
-            }
-
-            @media screen and (orientation:landscape) {
-                // CSS applied when the device is in landscape mode 
-            }
             .encachao {
                 background-color: #31e68e;
-                border-radius: 30px;
+                border-radius: 90px;
                 border: none;
                 display: inline-block;
                 color: #ffffff;
                 font-family: sans-serif;
-                font-size: 20px;
-                font-weight: 700;
-                padding-left: 40%;
-                padding-right: 40%;
-                padding-top: 10px;
-                padding-bottom: 10px;
+                font-size: 45px;
+                font-weight: 500;
+                padding: 40px 100px;
                 text-decoration: none;
             }
             .encachao:active {
@@ -63,12 +53,12 @@
                 rect(0,0,windowWidth - 20, windowHeight- 20, 20)
                 // submit button setup
                 button = createButton('SUBMIT')
-                button.position(width*.05,height*.8)
+                button.position(width*.3,height*.8)
                 button.mousePressed(submitDrawing)
                 button.addClass('encachao');
                 // drawing stroke
                 stroke(0)
-                strokeWeight(8)
+                strokeWeight(11)
             }
 
             function draw(){
